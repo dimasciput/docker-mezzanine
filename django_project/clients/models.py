@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from mezzanine.core.fields import RichTextField, FileField
+from mezzanine.core.fields import FileField
 from mezzanine.core.models import Displayable, RichText, Slugged
 from mezzanine.utils.models import AdminThumbMixin
 
