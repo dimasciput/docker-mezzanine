@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load mezzanine_tags keyword_tags i18n staticfiles %}
+{% load mezzanine_tags keyword_tags i18n staticfiles humanize %}
 
 {% block meta_title %}{% if page %}{{ page.richtextpage.meta_title }}{% else %}{% trans "Project" %}{% endif %}{% endblock %}
 
@@ -34,14 +34,15 @@
         <p>
             {% if category %}
                 {{ category }}
-            {% else %}
-                {% trans "People" %}
             {% endif %}
         </p>
     {% endif %}
 
     <div class="project-detail-container">
         <div class="project-categories">
+        {% if project.ongoing %}
+            <a href="/project/ongoing/" class="badge badge-success">Ongoing</a>
+        {% endif %}
         {% for category in project.categories.all %}
             <a href="/project/category/{{ category.slug }}" class="badge badge-info">
                 {{ category.title }}
@@ -58,9 +59,15 @@
             {% endfor %}
          </ul>
         </div>
+
         <div class="project-details">
             {{ project.project_details | safe }}
         </div>
+        {% if project.value %}
+        <div class="project-value">
+            <h3> Project value : R{{ project.value | intcomma }} </h3>
+        </div>
+        {% endif %}
         <hr/>
         <div class="project-clients">
             <h2>{% if project.clients.all|length > 1 %} Clients {% else %} Client {% endif %}</h2> <br/>

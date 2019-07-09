@@ -52,6 +52,7 @@ INSTALLED_APPS += (
     "modal_announcements",
     'payment',
     'plugins',
+    'django.contrib.humanize',
 )
 
 # mezzanine-mdown options

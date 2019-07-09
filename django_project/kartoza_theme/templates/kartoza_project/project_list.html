@@ -47,6 +47,9 @@
             <div class="pure-u-2-3 pure-u-md-2-3 project-desc">
                 <div class="project-title">
                     <h3>{{ project.title }}</h3>
+                    {% if project.ongoing %}
+                    <span class="ongoing badge badge-success">Ongoing</span>
+                    {% endif %}
                 </div>
                 <div class="project-short-desc">
                     {{ project.short_description | linebreaks }}

@@ -38,3 +38,11 @@
 .badge {
     border-radius: 0;
 }
+
+.badge-success {
+    background-color: green;
+}
+
+.ongoing {
+    margin-bottom: 10px;
+}

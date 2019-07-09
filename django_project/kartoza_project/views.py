@@ -1,5 +1,7 @@
+from datetime import datetime
 from django.http import Http404
 from django.shortcuts import get_object_or_404
+from django.db.models import F, Q, When, Case
 from .models import Project, ProjectCategory, ProjectImage, Reference
 from mezzanine.conf import settings
 from mezzanine.utils.views import render, paginate
@@ -47,4 +49,25 @@ def project_detail(request, slug,
         'references': references
     }
     templates = [u'kartoza_project/project_detail_%s.html' % unicode(slug), template]
+    return render(request, templates, context)
+
+
+def project_list_ongoing(request, template='kartoza_project/project_list.html'):
+    templates = []
+    projects = Project.objects.all().exclude(
+        date_start__isnull=True,
+        date_end__isnull=True
+    )
+    projects = projects.filter(
+        Q(date_end__isnull=False, date_end__gt=datetime.now().date()) |
+        Q(date_end__isnull=True, date_start__isnull=False)
+    )
+    # requires Django VERSION >= (1, 4):
+    projects = projects.prefetch_related('categories')
+
+    projects = paginate(projects, request.GET.get('page', 1),
+                        settings.PROJECTS_PER_PAGE,
+                        settings.MAX_PAGING_LINKS)
+    context = {'projects': projects}
+    templates.append(template)
     return render(request, templates, context)
