@@ -63,6 +63,7 @@ MIGRATION_MODULES = {'accounts': 'core.migration'}
 GRAPPELLI_ADMIN_TITLE = 'Site administration panel'
 
 PEOPLE_PER_PAGE = 20
+PROJECTS_PER_PAGE = 10
 
 EVENT_USE_FEATURED_IMAGE = True
 # This one must occur before django provided middleware

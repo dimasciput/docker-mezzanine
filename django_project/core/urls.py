@@ -34,6 +34,7 @@ urlpatterns = i18n_patterns(
 
         # For mezzanine-people
         ("^people/", include('mezzanine_people.urls')),
+        ("^project/", include('kartoza_project.urls')),
         ("^api/people/", "core.views.get_all_people"),
         # Mezzanine Careers
         ("^careers/", include("careers.urls")),

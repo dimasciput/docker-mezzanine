@@ -32,6 +32,12 @@ class Client(Displayable, RichText, AdminThumbMixin):
         null=False
     )
 
+    def title_name(self):
+        splitted = self.title.split('.')
+        if len(splitted) > 1:
+            return splitted[1]
+        return splitted[0]
+
     class Meta:
         """Meta class for client."""
         verbose_name = _("Clients")

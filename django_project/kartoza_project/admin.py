@@ -25,8 +25,8 @@ class ProjectAdmin(admin.ModelAdmin):
     """
     Admin class for project
     """
-    list_display = ['admin_thumb', 'name', 'short_description', 'date_start', 'date_end']
-    list_display_links = ['name', ]
+    list_display = ['admin_thumb', 'title', 'short_description', 'date_start', 'date_end']
+    list_display_links = ['title', ]
     inlines = [ProjectImageInline, ReferenceStackedInline]
 
 

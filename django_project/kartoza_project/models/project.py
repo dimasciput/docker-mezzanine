@@ -1,16 +1,10 @@
 from django.db import models
 from mezzanine.core.fields import RichTextField
 from mezzanine.utils.models import AdminThumbMixin
+from mezzanine.core.models import Slugged
 
 
-class Project(AdminThumbMixin, models.Model):
-
-    name = models.CharField(
-        max_length=300,
-        null=False,
-        blank=False,
-        verbose_name='Project name'
-    )
+class Project(Slugged, AdminThumbMixin):
 
     short_description = models.TextField(
         null=True,
@@ -59,7 +53,8 @@ class Project(AdminThumbMixin, models.Model):
     admin_thumb_field = 'thumbnail'
 
     def __unicode__(self):
-        return self.name
+        return self.title
 
-
-
+    @property
+    def sorted_clients_set(self):
+        return self.clients.order_by('title')
