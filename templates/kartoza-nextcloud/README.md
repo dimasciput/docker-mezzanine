@@ -15,7 +15,6 @@ When you start Nextcloud for the first time you will see the [Installation Wizar
 - Database: `YOUR-DATABASE` (default: `nextcloud`)
 - Postgres Username: `YOUR-USER` (default: `nextcloud`)
 - Postgres Password: `YOUR-PASSWORD`
-- Postgres Hostname: `gis` (**Important:** Use `gis` instead of `localhost`)
+- Postgres Hostname: `db` (**Important:** Use `db` instead of `localhost`)
 
 Read more in the official [Nextcloud Documentation](https://docs.nextcloud.com/).
-
